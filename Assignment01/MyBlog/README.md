@@ -20,7 +20,7 @@ This project is a conversion of a static HTML page into a fully dynamic and main
 -   Broke **header**, **navigation**, and **footer** into reusable Blade components.
 -   Used:
     -   `@include` for partial views.
-    -   Blade component syntax `<x-component-name />` for reusable UI elements.
+    -   `@include` for reusable UI elements.
 
 ### 3. Page Conversion
 

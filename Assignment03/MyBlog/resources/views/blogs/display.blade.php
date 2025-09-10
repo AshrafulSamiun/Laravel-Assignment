@@ -9,16 +9,11 @@
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Discover the latest in technology, programming, and
                 digital innovation</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <form action="{{ route('blogs.search') }}" method="GET"
-                    class="flex flex-col sm:flex-row justify-center gap-4">
-                    <input type="text" placeholder="Search articles..." name="search" id="search"
-                        class="px-4 py-3 rounded-md text-gray-800 w-full sm:w-96" value="{{ request('search') }}">
-
-                    <button type="submit"
-                        class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
-                        <i class="fas fa-search mr-2"></i> Search
-                    </button>
-                </form>
+                <input type="text" placeholder="Search articles..."
+                    class="px-4 py-3 rounded-md text-gray-800 w-full sm:w-96">
+                <button class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-search mr-2"></i> Search
+                </button>
             </div>
         </div>
     </section>
@@ -31,41 +26,33 @@
     <div class="container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
         <!-- Recent Articles -->
         <main class="lg:w-2/3">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-2">Recent Articles</h2>
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-2">{{  $blog->title }}</h2>
             <div class="space-y-8">
                 <!-- Recent Post  -->
-                @foreach($blogs as $blog)
-                    <article
-                        class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition flex flex-col md:flex-row">
-                        <img src="https://placehold.co/480x200/png" alt="{{ $blog->title }}"
-                            class="md:w-1/3 h-48 md:h-auto object-cover">
-                        <div class="p-6 md:w-2/3">
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-xs">{{ $blog->category->name }}</span>
-                                <span class="mx-2">•</span>
-                                <span>{{ $blog->created_at->format('F j, Y') }}</span>
-                                <span class="mx-2">•</span>
-                                <span>{{ $blog->read_time }} min read</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">{{ $blog->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ Str::limit($blog->content, 250) }}</p>
-                            <a href="{{ route('blogs.show', $blog->id) }}"
-                                class="text-blue-600 font-medium hover:text-blue-800 transition">Read More</a>
+                <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition flex flex-col">
+                    <img src="https://placehold.co/480x200/png" alt="{{ $blog->title }}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-xs">{{ $blog->category->name }}</span>
+                            <span class="mx-2">•</span>
+                            <span>{{ $blog->created_at->format('F j, Y') }}</span>
+                            <span class="mx-2">•</span>
+                            <span>{{ $blog->read_time }} min read</span>
                         </div>
-                    </article>
-                @endforeach
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">{{ $blog->title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ $blog->content }}</p>
+                        <a href="{{ route('blogs.show', $blog->id) }}"
+                            class="text-blue-600 font-medium hover:text-blue-800 transition"></a>
+                    </div>
+                </article>
+
+
 
 
             </div>
 
-            <div class="mt-8 flex justify-center">
 
-                <div class="mt-4">
-                    {{ $blogs->links() }}
-                </div>
-
-            </div>
         </main>
 
         <!-- Sidebar -->

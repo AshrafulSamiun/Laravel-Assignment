@@ -9,16 +9,11 @@
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Discover the latest in technology, programming, and
                 digital innovation</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <form action="{{ route('blogs.search') }}" method="GET"
-                    class="flex flex-col sm:flex-row justify-center gap-4">
-                    <input type="text" placeholder="Search articles..." name="search" id="search"
-                        class="px-4 py-3 rounded-md text-gray-800 w-full sm:w-96" value="{{ request('search') }}">
-
-                    <button type="submit"
-                        class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
-                        <i class="fas fa-search mr-2"></i> Search
-                    </button>
-                </form>
+                <input type="text" placeholder="Search articles..."
+                    class="px-4 py-3 rounded-md text-gray-800 w-full sm:w-96">
+                <button class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-search mr-2"></i> Search
+                </button>
             </div>
         </div>
     </section>
@@ -31,7 +26,7 @@
     <div class="container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
         <!-- Recent Articles -->
         <main class="lg:w-2/3">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-2">Recent Articles</h2>
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-2">{{ $category->name }} Articles</h2>
             <div class="space-y-8">
                 <!-- Recent Post  -->
                 @foreach($blogs as $blog)
@@ -80,23 +75,7 @@
                 </button>
             </div>
 
-            <!-- Categories Widget -->
-            <div class="bg-white p-6 rounded-lg shadow">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Categories</h3>
-                <div class="space-y-2">
 
-                    @foreach($blog_by_category as $category)
-                        <a href="{{ route('category.blogs', $category->id) }}"
-                            class="flex justify-between items-center p-2 hover:bg-gray-100 rounded-md transition">
-                            <span class="text-gray-700">{{ $category->name }}</span>
-                            <span
-                                class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">{{ $category->blogs_count }}</span>
-                        </a>
-                    @endforeach
-
-
-                </div>
-            </div>
 
             <!-- Newsletter Widget -->
             <div class="bg-white p-6 rounded-lg shadow">

@@ -17,6 +17,11 @@ Route::post('login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::post('createRole', [LoginController::class, 'createRole']);
+Route::post('createPermission', [LoginController::class, 'createPermission']);
+Route::post('assignPermissionToRole', [LoginController::class, 'AssignPermissionToRole']);
+Route::post('assignRoleToUser', [LoginController::class, 'AssignRoleToUser']);
+
 
 // Protected routes
 Route::middleware(['auth'])->group(function () {
